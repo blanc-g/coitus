@@ -106,6 +106,18 @@ footer a{color:var(--cream-ink);border-bottom:1px solid rgba(242,234,210,.5)}
 footer a:hover{border-bottom-color:var(--cream-ink)}
 .hedwave{width:120px;margin:2.2rem auto 0;display:block}
 
+/* ================= the guess-before-you-see row ================= */
+/* optional by design: the counterfactual reveals on scroll regardless — the
+   buttons only buy the reader the memory bonus of having committed first. */
+.guessrow{margin-top:.85rem;padding-top:.75rem;border-top:1px solid rgba(63,74,41,.18);
+  font-family:var(--frank);font-size:.84rem;line-height:1.5;color:var(--muted)}
+.guessrow .gbtns{display:inline-flex;gap:6px;margin-left:.5em;vertical-align:middle}
+.guessrow button{font-family:var(--disp);font-weight:600;font-size:.72rem;letter-spacing:.06em;
+  border:1.5px solid rgba(63,74,41,.45);background:transparent;color:var(--ink);
+  padding:.32em .7em;border-radius:999px;cursor:pointer;transition:all .15s}
+.guessrow button:hover{border-color:var(--coral);color:var(--coral)}
+.guessrow button.on{background:var(--coral);border-color:var(--coral);color:#fff}
+
 /* ================= justified setting ================= */
 /* the reading measure is justified and hyphenated, book-fashion; captions,
    notes and anything centered or narrow stay ragged, where justification
@@ -185,7 +197,7 @@ figure.photo figcaption b{color:var(--ink);font-weight:600}
 
 /* ================= immersive green bands ================= */
 .scrolly{position:relative;margin:2.5rem 0;background:var(--green)}
-.sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+.sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   z-index:1;background:var(--green);padding-bottom:7vh;overflow:hidden}
 .sticky .stage{width:100%;max-width:1040px;padding:0 18px}
 .scrolly .gtitle{color:var(--cream-ink)}
@@ -193,8 +205,8 @@ figure.photo figcaption b{color:var(--ink);font-weight:600}
 .scrolly .gnote{color:var(--cream-mut)}
 .scrolly .gnote b{color:var(--cream-ink)}
 .steps{position:relative;z-index:5;pointer-events:none}
-.step{min-height:88vh;display:flex;align-items:flex-end;justify-content:center;padding:0 16px 9vh}
-.step:last-child{min-height:100vh}
+.step{min-height:88vh;min-height:88svh;display:flex;align-items:flex-end;justify-content:center;padding:0 16px 9vh}
+.step:last-child{min-height:100vh;min-height:100svh}
 .step .card{pointer-events:auto;width:min(560px,100%);background:var(--cream);color:var(--ink);
   box-shadow:0 2px 4px rgba(20,24,10,.25),0 10px 30px rgba(20,24,10,.3);
   padding:1.35rem 1.35rem 1.15rem;font-family:var(--frank);font-size:.95rem;line-height:1.56}
@@ -464,14 +476,14 @@ footer .fin{font-family:var(--disp);font-weight:600;color:var(--coral);margin-to
     </div></div>
     <div class="steps" id="steps-pop">
       <div class="step" data-p="actual"><div class="card" data-i18n="c_pop_actual"><span class="stepno">What happened</span>
-        <p>France from the Revolution to the millennium, counted department by department in the censuses. Twenty-seven million people in 1793; fifty-eight million in 1999. A country growing, but slowly.</p></div></div>
+        <p>France from the Revolution to the millennium, counted department by department in the censuses. Twenty-seven million people in 1793; fifty-eight million in 1999. A country growing, but slowly.</p><div class="guessrow"><span>Before the next line draws — at England’s growth rate, how many French would there be today?</span><span class="gbtns"><button type="button" data-g="120">120M</button><button type="button" data-g="180">180M</button><button type="button" data-g="255">255M</button></span></div></div></div>
       <div class="step" data-p="cf"><div class="card" data-i18n="c_pop_cf"><span class="stepno">What didn’t</span>
         <p>Now the same country at England’s growth rate from 1750. There would be <span class="num">255 million</span> French people today — more than the United States had in 1990, in a country the size of Texas. That gap is the demographic transition. It is arguably the largest single fact about modern France, and it starts before the Revolution.</p></div></div>
     </div>
   </div>
 
   <div class="col">
-    <p data-i18n="a1p2">The standard theory says this should not have happened here first. Development is supposed to drive it: technology accelerates, schooling pays, parents trade quantity for quality. But in 1750 French literacy was about half of England’s. In 1800 the share of the French labor force outside agriculture was still below England’s in <strong>1500</strong>. France’s income per head in 1800 was England’s of <strong>1660</strong>. The advanced economy of Europe was across the Channel, and it kept having children until the 1870s.</p>
+    <p data-i18n="a1p2">The standard theory says this should not have happened here first. Development is supposed to drive the transition: technology accelerates, schooling pays, parents trade quantity for quality. France in 1750 fails every part of that test. Its literacy ran at about half of England’s. Its labor force was still overwhelmingly in the fields — a share England had left behind before <strong>1500</strong>. Its income per head in 1800 was England’s of <strong>1660</strong>. The advanced economy of Europe was across the Channel — and it kept having children until the 1870s.</p>
     <blockquote class="pull" data-i18n="q_braudel">“Did France cease to be a great power not, as is usually thought, on 15 June 1815 on the field of Waterloo, but well before that, during the reign of Louis&nbsp;XV when the natural birth-rate was interrupted?”
       <span class="who">Fernand Braudel, <i>The Identity of France</i></span></blockquote>
   </div>
@@ -481,7 +493,7 @@ footer .fin{font-family:var(--disp);font-weight:600;color:var(--coral);margin-to
 <section class="act" id="act2">
   <div class="col">
     <div class="shead"><div class="echo" aria-hidden="true" data-i18n="e2"><span>Lineages</span><span>Lineages</span><span class="fill">Lineages</span><span>Lineages</span><span>Lineages</span></div><span class="tag" data-i18n="t2"><span>Part 2 · How we know</span></span><h2 data-i18n="hh2">How do you count children before there was a census?</h2></div>
-    <p data-i18n="a2p1">The first French census that can tell you how many children a woman had is <strong>1851</strong> — ninety years after the thing we want to watch. Before that there are parish registers: baptisms, marriages and burials, in longhand, in thirty-six thousand parishes, with no index and no ages. For seventy years the only way through was to read them. Louis Henry’s French fertility series, the standard reference, rests on about <strong>forty parishes</strong>, all small, all rural, chosen partly for the legibility of the handwriting.</p>
+    <p data-i18n="a2p1">The first French census that can say how many children a woman had is <strong>1851</strong> — ninety years too late for the question that matters. Before that, the record is parish registers: baptisms, marriages and burials, in longhand, in thirty-six thousand parishes, with no index and no ages. For seventy years the only way through was to read them. Louis Henry’s reconstitution of about <strong>forty parishes</strong> — the series every textbook cites — rests on villages that were all small, all rural, and chosen partly for the legibility of the handwriting.</p>
     <p data-i18n="a2p2">The alternative is that millions of people have already done the reading — for their own families, and everywhere, because everyone has ancestors somewhere.</p>
   </div>
 
@@ -737,15 +749,15 @@ const FR_HTML = {
 "t1": "<span>Partie 1 · Ce qui était en jeu</span>",
 "hh1": "Le plus grand événement qui n’a jamais eu lieu en Europe",
 "a1p1": "Il est difficile d’exagérer ce que cela a coûté à la France, ou ce que cela lui a épargné. En 1750, la France compte environ 25 millions d’habitants&nbsp;; l’Angleterre et le pays de Galles, 5,5 millions. Dans les deux siècles et demi qui suivent, l’Angleterre est multipliée par dix. La France n’a pas tout à fait triplé.",
-"c_pop_actual": "<span class=\"stepno\">Ce qui a eu lieu</span>\n        <p>La France de la Révolution au millénaire, comptée département par département dans les recensements. Vingt-sept millions d’habitants en 1793&nbsp;; cinquante-huit millions en 1999. Un pays qui croît, mais lentement.</p>",
+"c_pop_actual": "<span class=\"stepno\">Ce qui a eu lieu</span>\n        <p>La France de la Révolution au millénaire, comptée département par département dans les recensements. Vingt-sept millions d’habitants en 1793&nbsp;; cinquante-huit millions en 1999. Un pays qui croît, mais lentement.</p><div class=\"guessrow\"><span>Avant que la ligne suivante ne se trace — au rythme anglais, combien de Français aujourd’hui&nbsp;?</span><span class=\"gbtns\"><button type=\"button\" data-g=\"120\">120&nbsp;M</button><button type=\"button\" data-g=\"180\">180&nbsp;M</button><button type=\"button\" data-g=\"255\">255&nbsp;M</button></span></div>",
 "c_pop_cf": "<span class=\"stepno\">Ce qui n’a pas eu lieu</span>\n        <p>Le même pays, maintenant, au rythme de croissance de l’Angleterre depuis 1750. Il y aurait aujourd’hui <span class=\"num\">255 millions</span> de Français — plus que les États-Unis n’en comptaient en 1990, dans un pays de la taille du Texas. Cet écart, c’est la transition démographique. C’est sans doute le plus grand fait de l’histoire de la France moderne, et il commence avant la Révolution.</p>",
-"a1p2": "La théorie standard veut que cela n’ait pas dû commencer ici. C’est le développement qui doit l’enclencher&nbsp;: la technique s’accélère, l’école devient rentable, les parents échangent le nombre contre la qualité. Or, en 1750, l’alphabétisation française atteint à peine la moitié de l’anglaise. En 1800, la part de la population active française hors agriculture est encore inférieure à celle de l’Angleterre en <strong>1500</strong>. La France atteint en 1800 le revenu par tête que l’Angleterre avait en <strong>1660</strong>. L’économie avancée de l’Europe était de l’autre côté de la Manche, et elle a continué de faire des enfants jusqu’aux années 1870.",
+"a1p2": "La théorie standard veut que cela n’ait pas dû commencer ici. C’est le développement qui doit enclencher la transition&nbsp;: la technique s’accélère, l’école devient rentable, les parents échangent le nombre contre la qualité. La France de 1750 échoue à chaque partie de ce test. Son alphabétisation atteint à peine la moitié de l’anglaise. Sa population active est encore massivement aux champs — une part que l’Angleterre avait laissée derrière elle avant <strong>1500</strong>. Son revenu par tête de 1800 est celui de l’Angleterre de <strong>1660</strong>. L’économie avancée de l’Europe est de l’autre côté de la Manche — et elle continue de faire des enfants jusqu’aux années 1870.",
 "q_braudel": "«&nbsp;La France a-t-elle cessé d’être une grande puissance non pas, comme on le croit d’ordinaire, le 15 juin 1815 sur le champ de bataille de Waterloo, mais bien avant, sous le règne de Louis&nbsp;XV, lorsque s’est interrompue la poussée de sa natalité&nbsp;?&nbsp;»\n      <span class=\"who\">Fernand Braudel, <i>L’Identité de la France</i></span>",
 
 "e2": "<span>Lignées</span><span>Lignées</span><span class=\"fill\">Lignées</span><span>Lignées</span><span>Lignées</span>",
 "t2": "<span>Partie 2 · Comment on le sait</span>",
 "hh2": "Comment compter les enfants avant le recensement&nbsp;?",
-"a2p1": "Le premier recensement français capable de dire combien d’enfants une femme a eus date de <strong>1851</strong> — quatre-vingt-dix ans après ce que nous voulons observer. Avant, il y a les registres paroissiaux&nbsp;: baptêmes, mariages et sépultures, à la main, dans trente-six mille paroisses, sans index ni âges. Pendant soixante-dix ans, le seul moyen d’y entrer a été de les lire. La série de fécondité française de Louis Henry, la référence, repose sur une <strong>quarantaine de paroisses</strong>, toutes petites, toutes rurales, choisies en partie pour la lisibilité de l’écriture.",
+"a2p1": "Le premier recensement français capable de dire combien d’enfants une femme avait eus date de <strong>1851</strong> — quatre-vingt-dix ans trop tard pour la question qui compte. Avant cela, la source, ce sont les registres paroissiaux&nbsp;: baptêmes, mariages et sépultures, à la main, dans trente-six mille paroisses, sans index et sans âges. Pendant soixante-dix ans, la seule voie a été de les lire. La reconstitution de Louis Henry sur une quarantaine de paroisses — la série que citent tous les manuels — repose sur des villages tous petits, tous ruraux, choisis en partie pour la lisibilité de l’écriture.",
 "a2p2": "L’autre solution, c’est que des millions de gens ont déjà fait cette lecture — pour leur propre famille, et partout, parce que tout le monde a des ancêtres quelque part.",
 "c_src_parish": "<span class=\"stepno\">Le registre</span>\n        <p>Saint-Germain-d’Anxure, en Mayenne. Le curé inscrit le baptême de <span class=\"num\">Michel Rousseau</span>, le 12 juin 1776 — fils de Jean Rousseau et de Françoise Philippot, «&nbsp;mariés en cette paroisse&nbsp;». Aucun des témoins ne savait signer.</p>",
 "c_src_geni": "<span class=\"stepno\">Le descendant</span>\n        <p>Deux cent quarante ans plus tard, quelqu’un retrouve cette page, et celles qui l’entourent, et reconstitue la famille&nbsp;: Michel et ses cinq frères et sœurs, nés entre 1772 et 1788, tous rattachés à leur père Jean. Le tout est versé sur <span class=\"num\">geni.com</span>.</p>",
@@ -1685,6 +1697,11 @@ function popScroll() {
     popPhase = ph;
     $("#pop-title").innerHTML = window.__POPCOPY[ph][0];
     $("#pop-note").innerHTML = window.__POPCOPY[ph][1];
+    if (ph === "cf" && window.__GUESS)
+      $("#pop-note").innerHTML += " " + (window.__GUESS === "255"
+        ? T("<b>You guessed it.</b>", "<b>Vous aviez vu juste.</b>")
+        : T("<b>You guessed " + window.__GUESS + " million; it is 255.</b>",
+            "<b>Vous aviez dit " + window.__GUESS + " millions&nbsp;; c’est 255.</b>"));
   }
 }
 
@@ -1750,6 +1767,13 @@ window.addEventListener("DOMContentLoaded", () => {
   $("#pop-title").innerHTML = window.__POPCOPY.actual[0];
   $("#pop-note").innerHTML = window.__POPCOPY.actual[1];
   scroller("#steps-pop", () => {});
+  /* the guess row: delegated, so it survives the language switch re-render */
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".guessrow button"); if (!b) return;
+    window.__GUESS = b.dataset.g;
+    $$(".guessrow button").forEach(x => x.classList.toggle("on", x === b));
+    if (popPhase === "cf") { popPhase = null; popScroll(); }
+  });
   addEventListener("scroll", popScroll, { passive: true });
   addEventListener("resize", () => { popChart(); popScroll(); gdpChart(); gdpPhase = null; gdpScroll(); });
   popScroll();
