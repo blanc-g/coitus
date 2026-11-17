@@ -581,7 +581,7 @@ figcaption b,figcaption strong{font-weight:600;color:inherit}
       <div class="step" data-s="wills"><div class="card" data-i18n="c_sec_wills"><span class="stepno">Witness 1 · What people said when they died</span>
         <p>A Provençal will opened with a formula: the soul commended to God, the Virgin and the saints, masses ordered, money left to the church. Vovelle read the universe of them, decade by decade, and watched the formula shrink to a clause and then to nothing. By the 1780s some testators called death <em>“the indispensable tribute that we owe to Nature.”</em></p></div></div>
       <div class="step" data-s="clergy"><div class="card" data-i18n="c_sec_clergy"><span class="stepno">Witness 2 · Who was still becoming a priest</span><p>Ordinations across France, reconstructed by Tackett and Langlois from fourteen dioceses. Recruitment into the priesthood was already falling before the Revolution. Between the cohorts of 1742–46 and 1787–91, it fell about 40%.</p></div></div>
-      <div class="step" data-s="names"><div class="card" data-i18n="c_sec_names"><span class="stepno">Witness 3 · What people called their children</span><p>And a measure that reaches ordinary households: first names. About 9.47 million birth and baptism records from 2,234 rural municipalities, each name scored by its over-representation among the patron saints of medieval churches. Religious naming peaks around 1750, then falls for decades before recovering in the nineteenth century.</p></div></div>
+      <div class="step" data-s="names"></div>
       <div class="step" data-s="fert"><div class="card" data-i18n="c_sec_fert"><span class="stepno">And now the children</span>
         <p>Look at the same decades. Notarial records, diocesan registers and parish baptisms all bend in the 1750s and 1760s — and so does the number of children in a French household. Four archives with nothing to do with one another, turning together, a generation before the Revolution.</p></div></div>
     </div>
@@ -790,7 +790,6 @@ const FR_HTML = {
   "a3p5": "Énormément, et au moment précis qui rend la coïncidence intenable. Voici un pays qui se disait la fille aînée de l’Église, dont les rois portaient le titre de <i>Rex Christianissimus</i>, où le protestantisme avait été écrasé puis chassé. Les historiens savent, depuis que Michel Vovelle a ouvert les archives notariales de Provence en 1973, que quelque chose a cédé au XVIII<sup>e</sup> siècle. Il manquait une mesure qui descende sous l’élite. En voici trois, issues de trois fonds d’archives sans rapport entre eux.",
   "c_sec_wills": "<span class=\"stepno\">Témoin 1 · Ce que l’on disait en mourant</span>\n        <p>Un testament provençal s’ouvrait par une formule&nbsp;: l’âme recommandée à Dieu, à la Vierge et aux saints, des messes commandées, de l’argent laissé à l’église. Vovelle les a lus tous, décennie après décennie, et a vu la formule se réduire à une clause, puis à rien. Dans les années 1780, certains testateurs appellent la mort <em>«&nbsp;l’indispensable tribut que nous devons à la Nature&nbsp;»</em>.</p>",
   "c_sec_clergy": "<span class=\"stepno\">Témoin 2 · Qui se faisait encore prêtre</span><p>Les ordinations en France, reconstituées par Tackett et Langlois dans quatorze diocèses. Le recrutement des prêtres diminuait déjà avant la Révolution. Entre les cohortes de 1742–46 et de 1787–91, il a reculé d’environ 40 %.</p>",
-  "c_sec_names": "<span class=\"stepno\">Témoin 3 · Comment on appelait ses enfants</span><p>Et une mesure qui atteint les familles ordinaires : les prénoms. Environ 9,47 millions d’actes de naissance et de baptême dans 2 234 communes rurales, chaque prénom étant noté selon sa sur-représentation parmi les saints patrons des églises médiévales. Les prénoms religieux culminent vers 1750, puis reculent pendant des décennies avant de remonter au XIX<sup>e</sup> siècle.</p>",
   "c_sec_fert": "<span class=\"stepno\">Et maintenant les enfants</span>\n        <p>Regardez les mêmes décennies. Les minutes notariales, les registres diocésains et les baptêmes paroissiaux s’infléchissent tous dans les années 1750 et 1760 — et le nombre d’enfants d’un ménage français aussi. Quatre fonds d’archives sans rapport entre eux, qui tournent ensemble, une génération avant la Révolution.</p>",
   "e4": "<span>Serment</span><span>Serment</span><span class=\"fill\">Serment</span><span>Serment</span><span>Serment</span>",
   "t4": "<span>Partie 4 · L’épreuve</span>",
@@ -1267,23 +1266,61 @@ const SECP = () => ({
     pts: () => R.fert.fr.y.map((y, i) => [y, R.fert.fr.v[i]]).filter(p => p[0] <= 1900) },
 });
 const SECX = [1685, 1905], SECXT = [1700, 1750, 1800, 1850, 1900];
+/* Vector coordinates from the plotted geometry in published Figures 6C and 8.
+   Values are PDF plot coordinates, not underlying individual records. */
+const PUBLISHED_NAMES_PLOT = [[85.953,70.961],[87.75,72.965],[89.547,65.879],[91.359,76.031],[93.156,74.73],[94.965,77.039],[96.762,76.938],[98.559,75.008],[100.371,78.734],[102.168,64.844],[103.98,76.703],[105.777,85.438],[107.586,68.273],[109.383,76.383],[111.18,65.895],[112.992,70.672],[114.789,68.305],[116.598,79.012],[118.395,77.055],[120.191,78.559],[122.004,69.02],[123.801,75.492],[125.609,70.961],[127.406,74.645],[129.203,66.828],[131.016,72.816],[132.812,63.059],[134.625,62.723],[136.422,66.246],[138.219,59.863],[140.027,67.531],[141.824,63.059],[143.637,64.609],[145.434,43.926],[147.242,50.469],[149.039,47.738],[150.836,60.008],[152.648,37.453],[154.445,41.984],[156.258,37.34],[158.051,45.344],[159.848,50.922],[161.66,47.871],[163.457,41.371],[165.27,46.32],[167.066,53.422],[168.863,47.285],[170.672,41.516],[172.469,35.832],[174.281,35.426],[176.078,32.809],[177.875,44.23],[179.684,49.828],[181.48,50.074],[183.293,49.957],[185.09,47.723],[186.887,51.711],[188.695,50.453],[190.492,51.23],[192.305,46.145],[194.102,54.91],[195.914,58.809],[197.711,59.293],[199.508,59.805],[201.316,61.234],[203.113,56.633],[204.926,56.953],[206.723,49.898],[208.52,60.488],[210.328,70.598],[212.125,61.949],[213.938,60.855],[215.734,61.965],[217.531,67.484],[219.344,70.949],[221.137,63.688],[222.949,66.082],[224.746,71.344],[226.543,66.055],[228.355,66.812],[230.152,68.055],[231.961,69.18],[233.758,76.512],[235.57,73.898],[237.367,72.934],[239.164,77.055],[240.973,78.398],[242.77,78.016],[244.582,87.98],[246.379,83.449],[248.176,91.734],[249.988,100.703],[251.781,111.293],[253.594,106.121],[255.391,118.871],[257.188,112.371],[259.0,123.488],[260.797,125.312],[262.605,126.422],[264.402,128.672],[266.199,138.227],[268.012,143.062],[269.809,138.195],[271.617,143.734],[273.414,141.219],[275.211,154.191],[277.023,149.035],[278.82,142.797],[280.633,158.719],[282.426,147.926],[284.238,153.594],[286.035,152.027],[287.832,157.77],[289.645,154.277],[291.441,159.785],[293.25,170.449],[295.047,171.133],[296.844,174.727],[298.656,183.332],[300.453,187.551],[302.262,186.09],[304.059,199.18],[305.855,200.055],[307.668,206.176],[309.465,208.863],[311.277,215.715],[313.074,222.449],[314.867,228.422],[316.68,231.387],[318.477,234.336],[320.289,235.93],[322.086,247.219],[323.895,247.891],[325.691,250.316],[327.488,257.621],[329.301,254.844],[331.098,260.965],[332.906,269.582],[334.703,268.664],[336.5,267.668],[338.312,274.973],[340.109,264.574],[341.922,272.637],[343.719,263.871],[345.512,266.312],[347.324,261.562],[349.121,262.324],[350.934,259.461],[352.73,260.82],[354.527,254.449],[356.336,252.828],[358.133,258.906],[359.945,255.91],[361.742,253.371],[363.551,253.617],[365.348,245.816],[367.145,245.699],[368.957,252.609],[370.754,255.211],[372.566,249.66],[374.363,247.906],[376.156,242.312],[377.969,241.641],[379.766,245.645],[381.578,246.84],[383.375,253.766],[385.172,252.316],[386.98,243.949],[388.777,244.621],[390.59,247.703],[392.387,251.441],[394.184,249.441],[395.992,245.773],[397.789,251.602],[399.602,258.25],[401.398,249.176],[403.195,254.715],[405.008,247.16],[406.805,237.039],[408.613,240.488],[410.41,248.68],[412.223,236.953],[414.02,235.668],[415.816,237.812],[417.625,234.746],[419.422,241.508],[421.234,234.965],[423.031,231.109],[424.828,237.988],[426.637,226.918],[428.434,236.41],[430.246,221.469],[432.043,230.992],[433.84,253.355],[435.652,209.957],[437.449,208.395],[439.258,220.199],[441.055,172.684],[442.852,212.238],[444.664,192.094],[446.461,179.547]];
+const PUBLISHED_REVERSAL_PLOT = [[97.8747,311.4471],[119.176,236.4098],[123.3894,265.5967],[125.4669,241.0914],[127.6175,236.1319],[129.4462,229.68],[131.0555,222.1309],[132.6795,210.2221],[134.0254,209.8125],[135.5323,228.4365],[136.8783,216.6008],[137.8,202.7169],[138.9996,213.5285],[139.9067,184.6782],[140.8723,192.0224],[141.6769,217.2738],[142.7888,215.4158],[144.1494,221.9846],[145.4368,207.6472],[146.4317,211.3486],[147.5874,199.352],[148.5238,207.4278],[149.226,197.9183],[149.7673,228.1585],[150.7036,210.3392],[151.4205,205.599],[152.1959,182.7616],[152.8835,210.0027],[153.9076,178.8408],[154.7561,190.3546],[155.2536,206.7402],[155.8827,184.2246],[156.6873,199.1911],[157.6821,205.9941],[158.5014,199.908],[159.4816,200.698],[160.2131,193.6756],[160.8569,190.9544],[161.4859,213.0311],[162.0565,182.2788],[162.4515,172.8571],[163.0221,171.6867],[163.4171,176.8072],[163.856,175.9001],[164.4412,181.4742],[164.8801,200.976],[165.597,201.4149],[166.2992,185.7754],[166.9868,202.951],[167.6159,179.1919],[168.0694,184.327],[168.5815,164.6789],[169.0789,201.0491],[169.5324,177.8167],[170.1908,207.6911],[170.893,180.8597],[171.3758,170.7358],[171.844,191.4079],[172.3707,164.0791],[172.7657,167.6781],[173.5849,188.4234],[174.1409,164.8691],[174.8431,154.16],[175.3844,187.0482],[176.0282,183.7272],[176.4378,157.8028],[176.8913,146.0403],[177.5204,177.8459],[177.8862,165.2934],[178.3543,174.4518],[178.7493,164.1669],[179.437,190.6764],[180.0368,179.5723],[180.5781,189.3451],[180.9438,147.1083],[181.7778,143.6995],[182.4361,189.0818],[182.8165,173.3545],[183.3285,162.8209],[183.9137,176.7487],[184.4697,192.1541],[184.9964,156.7202],[185.5377,158.9879],[186.0058,177.9922],[186.3569,157.1152],[186.9714,137.116],[187.5859,187.5603],[188.3466,167.1953],[189.0489,181.0645],[189.5024,197.0259],[190.1754,184.2685],[190.8484,145.1771],[191.77,151.4242],[192.4869,171.0576],[192.999,175.9587],[193.5695,165.2788],[194.2279,160.7435],[195.0618,180.2306],[195.7348,127.1969],[196.1883,181.7521],[196.9783,165.191],[197.622,160.7727],[198.6023,146.9327],[199.1582,134.0145],[199.5971,163.2159],[200.4749,139.3252],[201.2357,162.3967],[201.8355,142.8802],[202.5231,143.0997],[203.1522,141.7976],[203.9422,136.2236],[204.4981,157.3786],[205.0248,150.5756],[205.6247,153.7942],[206.1221,143.9921],[206.8243,155.0817],[207.5558,166.932],[208.2873,134.4241],[209.3992,140.5833],[210.5257,144.1677],[211.1402,130.4447],[211.857,144.8114],[212.6324,152.2434],[213.9199,145.1625],[215.1049,159.1927],[215.6023,122.4275],[216.5825,135.1849],[217.4896,132.1565],[218.8209,106.276],[220.6789,131.5127],[221.7908,116.8242],[223.0197,116.9705],[224.0877,110.9283],[225.302,143.3045],[226.4431,131.5566],[227.6135,132.054],[228.5499,133.2098],[229.8519,128.9086],[230.8468,104.023],[232.2513,115.054],[233.5094,108.7046],[234.358,113.8397],[236.0258,125.8802],[237.6497,90.2269],[238.9957,108.4266],[240.1953,115.0686],[241.4535,118.097],[242.4191,101.1701],[243.6334,107.5634],[245.3451,92.0556],[246.6911,71.954],[248.2565,100.8921],[249.6756,109.3775],[250.9338,107.4317],[252.031,77.1769],[253.0405,79.9859],[254.0353,85.911],[255.235,91.251],[256.8735,78.1571],[257.8245,70.4764],[258.5706,88.5444],[259.3021,86.1451],[260.0775,103.0135],[261.1748,93.2553],[262.5792,75.5237],[264.2178,79.7372],[265.2858,66.7311],[266.544,89.3491],[267.6558,43.5279],[268.519,64.0538],[269.5578,67.843],[270.3624,75.9772],[271.8108,63.5856],[273.1275,87.3009],[274.1516,75.2019],[275.1025,58.4944],[276.4777,76.8697],[278.1748,83.263],[279.5062,52.8618],[280.7058,73.0805],[282.2712,82.3852],[283.9683,76.5917],[285.4606,77.4695],[287.3917,56.4901],[289.4984,51.6622],[291.2833,64.7268],[292.5268,68.9256],[293.6241,62.1958],[295.5553,54.7199],[297.1792,49.058],[299.9004,50.6966],[302.6216,73.0366],[305.9279,49.9944],[307.8152,41.2164],[311.2386,56.0073],[314.1207,48.3997],[317.2077,30.0537],[321.8893,35.0571],[329.6724,42.3282],[408.1916,21.2318]];
+
+function drawNamesPublished(div) {
+  const w = MOB ? 620 : 940, h = MOB ? 360 : 410;
+  const ml = MOB ? 65 : 72, mr = 24, mt = 35, mb = 58;
+  const iw = w - ml - mr, ih = h - mt - mb;
+  const svg = E("svg", { viewBox: `0 0 ${w} ${h}`, role: "img",
+    "aria-label": T("Religious-name index, 1700 to 1900. It rises before the mid-eighteenth century, declines, then partially recovers.", "Indice des prénoms religieux de 1700 à 1900. Il augmente avant le milieu du XVIIIe siècle, diminue, puis remonte en partie.") }, div);
+  const g = E("g", { transform: `translate(${ml},${mt})` }, svg);
+  // All coordinates refer to the plot frame in the published PDF.
+  const X = lin(78.105, 454.324, 0, iw), Y = lin(13.332, 299.43, 0, ih);
+  const timeTicks = [[1700,85.953],[1750,176.09],[1800,266.21],[1850,356.34],[1900,446.47]];
+  const valueTicks = [[.22,291.57],[.24,237.49],[.26,183.42],[.28,129.34],[.30,75.26],[.32,21.18]];
+  E("rect", {x:X(176.09),y:0,width:X(230.17)-X(176.09),height:ih,fill:COR,opacity:.1},g);
+  valueTicks.forEach(([v,y])=>{
+    E("line",{x1:0,x2:iw,y1:Y(y),y2:Y(y),stroke:GRID},g);
+    E("text",{x:-10,y:Y(y)+5,"text-anchor":"end","font-size":MOB?18:13,"font-family":"var(--frank)",fill:MUT},g).textContent=LANG==="fr"?v.toFixed(2).replace('.',','):v.toFixed(2);
+  });
+  timeTicks.forEach(([v,x])=>E("text",{x:X(x),y:ih+25,"text-anchor":"middle","font-size":MOB?18:13,"font-family":"var(--frank)",fill:MUT},g).textContent=v);
+  E("text",{x:0,y:-13,"font-size":MOB?16:12,"letter-spacing":".05em","font-family":"var(--frank)",fill:MUT},g).textContent=T("RELIGIOUS-NAME INDEX","INDICE DES PRÉNOMS RELIGIEUX");
+  E("path",{d:PUBLISHED_NAMES_PLOT.map(([x,y],i)=>(i?"L":"M")+X(x).toFixed(3)+" "+Y(y).toFixed(3)).join(" "),fill:"none",stroke:CRE,"stroke-width":MOB?3.3:3.1,"stroke-linejoin":"round","stroke-linecap":"round"},g);
+  E("line",{x1:0,x2:iw,y1:ih,y2:ih,stroke:"rgba(242,234,210,.4)"},g);
+  E("text",{x:0,y:ih+49,"font-size":MOB?16:12,"font-family":"var(--frank)",fill:MUT},g).textContent=T("Birth year","Année de naissance");
+}
+
+function drawReversalPublished(div) {
+  const w = MOB ? 620 : 940, h = MOB ? 430 : 480;
+  const ml = MOB ? 67 : 82, mr = 28, mt = 45, mb = 70;
+  const iw = w - ml - mr, ih = h - mt - mb;
+  const svg = E("svg", {viewBox:`0 0 ${w} ${h}`,role:"img",
+    "aria-label":T("Places with higher religious-name scores in 1700–1749 generally saw larger proportional declines by 1850–1899.","Les lieux où les prénoms étaient plus religieux en 1700–1749 ont généralement connu un recul proportionnel plus marqué en 1850–1899.")},div);
+  const g = E("g",{transform:`translate(${ml},${mt})`},svg);
+  const X = lin(90.01254,454.677,0,iw), Y = lin(13.354985,319.30926,0,ih);
+  const xt = [[.2,119.6],[.3,201.4],[.4,283.21],[.5,365.0],[.6,446.81]];
+  const yt = [[-.4,282.17],[-.2,231.11],[0,180.04],[.2,128.98],[.4,77.92],[.6,26.86]];
+  const fmt=v=>LANG==="fr"?v.toFixed(1).replace('.',','):v.toFixed(1);
+  yt.forEach(([v,y])=>{
+    E("line",{x1:0,x2:iw,y1:Y(y),y2:Y(y),stroke:v===0?LMUT:LGRID,"stroke-width":v===0?1.4:1,"stroke-dasharray":v===0?"5 4":""},g);
+    E("text",{x:-10,y:Y(y)+5,"text-anchor":"end","font-size":MOB?18:13,"font-family":"var(--frank)",fill:LMUT},g).textContent=fmt(v);
+  });
+  xt.forEach(([v,x])=>E("text",{x:X(x),y:ih+25,"text-anchor":"middle","font-size":MOB?18:13,"font-family":"var(--frank)",fill:LMUT},g).textContent=fmt(v));
+  E("text",{x:0,y:-17,"font-size":MOB?16:12,"letter-spacing":".04em","font-family":"var(--frank)",fill:LMUT},g).textContent=T("PROPORTIONAL DECLINE, 1700–1749 TO 1850–1899","RECUL PROPORTIONNEL, 1700–1749 À 1850–1899");
+  PUBLISHED_REVERSAL_PLOT.forEach(([x,y])=>E("circle",{cx:X(x),cy:Y(y),r:MOB?3.4:3.5,fill:"none",stroke:LCOR,"stroke-width":1.8,opacity:.88},g));
+  E("line",{x1:0,x2:iw,y1:ih,y2:ih,stroke:LCON},g);
+  E("text",{x:0,y:ih+54,"font-size":MOB?16:12,"font-family":"var(--frank)",fill:LMUT},g).textContent=T("Religious-name index, 1700–1749","Indice des prénoms religieux, 1700–1749");
+}
+
+
 function secChart(step) {
   const div = $("#sec-chart"); div.innerHTML = "";
-  // FamilySearch records stay private: show the published Figure 6C image.
-  if (step === "names") {
-    const img = document.createElement("img");
-    img.src = "assets/fig6c-rni.png";
-    img.alt = T(
-      "Published Figure 6C: the religious-name index in France, 1700–1900. The index rises before the mid-eighteenth century, declines, then recovers in the nineteenth century.",
-      "Figure 6C publiée : l’indice de religiosité des prénoms en France, 1700–1900. Il augmente avant le milieu du XVIIIe siècle, diminue, puis remonte au XIXe siècle.");
-    img.style.display = "block";
-    img.style.width = "100%";
-    img.style.maxHeight = "58vh";
-    img.style.objectFit = "contain";
-    img.style.margin = "0 auto";
-    div.appendChild(img);
-    return;
-  }
+  // Draw only the published, aggregate figure geometry.
+  if (step === "names") { drawNamesPublished(div); return; }
   const P = SECP()[step];
   const w = MOB ? 660 : 940, h = MOB ? 360 : 400, ml = MOB ? 46 : 62, mr = MOB ? 18 : 30, mt = 18, mb = 48;
   const svg = E("svg", { viewBox: `0 0 ${w} ${h}` }, div);
@@ -1455,9 +1492,7 @@ function quadChart() {
 /* ============ the reversal (light theme) ============ */
 function revChart(){
   const div=$("#rev-chart");div.innerHTML="";
-  const img=document.createElement("img");img.src="assets/fig8-reversal.png";img.className="published-figure";
-  img.alt=T("Published Figure 8: municipalities with more religious names in 1700–1749 experienced a larger proportional decline by 1850–1899.","Figure 8 publiée : les communes aux prénoms les plus religieux en 1700–1749 ont connu un recul proportionnel plus marqué en 1850–1899.");
-  div.appendChild(img);
+  drawReversalPublished(div);
   $("#rev-note").innerHTML=T("The paper’s published Figure 8, from the current replication release. Each circle groups municipalities with similar initial religious naming. The horizontal axis measures religious names in 1700–1749; the vertical axis is their proportional decline by 1850–1899. Positive values mean a decline; negative values mean an increase. The pattern is consistent with a backlash where religious influence had been strongest.","Figure 8 de l’article, dans la version actuelle de la réplication. Chaque cercle regroupe des communes aux prénoms initialement aussi religieux. L’axe horizontal mesure les prénoms religieux en 1700–1749 ; l’axe vertical, leur recul proportionnel en 1850–1899. Les valeurs positives indiquent un recul, les négatives une hausse. Ce profil est compatible avec une réaction là où l’influence religieuse avait été la plus forte.");
 }
 
